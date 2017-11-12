@@ -21,9 +21,9 @@ bintray {
             vcsTag = '0.0.1'
         }
  
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/hathibelagal/LibraryTutorial.git'
-        websiteUrl = 'https://github.com/hathibelagal/LibraryTutorial'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/danyfel80/com.danyfel80.imageanalysis.test.git'
+        websiteUrl = 'https://github.com/danyfel80/com.danyfel80.imageanalysis.test'
     }
     configurations = ['archives']
 }
