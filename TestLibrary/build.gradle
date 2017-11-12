@@ -1,0 +1,62 @@
+// Apply the java-library plugin to add support for Java Library
+plugins {
+    id "com.jfrog.bintray" version "1.8.0"
+}
+apply plugin: 'java-library'
+
+group = 'com.danyfel80.imageanalysis.test'
+version = '0.0.1'
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    pkg {
+        repo = 'imageAnalysis'
+        name = 'com.danyfel80.imageanalysis.test'
+ 
+        version {
+            name = '0.0.1'
+            desc = 'My test library upload'
+            released  = new Date()
+            vcsTag = '0.0.1'
+        }
+ 
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/hathibelagal/LibraryTutorial.git'
+        websiteUrl = 'https://github.com/hathibelagal/LibraryTutorial'
+    }
+    configurations = ['archives']
+}
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    jcenter()
+}
+
+dependencies {
+
+    api 'org.apache.commons:commons-math3:3.6.1'
+
+    implementation 'com.google.guava:guava:21.0'
+
+    testImplementation 'junit:junit:4.12'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.3'
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
+artifacts {
+	archives sourcesJar
+	archives javadocJar
+}
